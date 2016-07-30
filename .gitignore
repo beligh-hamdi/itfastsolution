@@ -4,3 +4,7 @@
 */cache/*
 !*/cache/index.html
 !*/cache/.htaccess
+.idea/
+server/vendor
+server/composer.phar
+server/composer.lock

@@ -1,0 +1,15 @@
+{
+  "name": "creatixplus/itfastsolution",
+  "description": "it fast solution",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "author's name",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "codeigniter/framework": "3.1.0"
+  }
+}
