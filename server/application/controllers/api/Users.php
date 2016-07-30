@@ -47,44 +47,53 @@ class Users extends REST_Controller
 
     public function index_post()
     {
-        $name = 'name1';
-        $email = 'email@example';
+
+        $name = $this->post('name');
+        $email = $this->post('email');
+        $password = $this->post('password');
+        $img = $this->post('img');
 
         $user = array(
             'name' => $name,
-            'email' => $email
+            'email' => $email,
+            'password' => $password,
+            'img' => $img
         );
 
         $this->db->insert('users', $user);
         $id = $this->db->insert_id();
         $this->response($id, REST_Controller::HTTP_OK);
+
     }
 
     public function index_delete()
     {
-        $id = 1;
-        $where_array = array(
-            'id'=>$id
-        );
-        $this->db->where($where_array);
+        $id = $this->query('id');
+        $this->db->where('id', $id);
         $this->db->delete('users');
 
-        $this->response('', REST_Controller::HTTP_OK);
+        $this->response($id, REST_Controller::HTTP_OK);
     }
 
     public function index_put()
     {
-        $name = 'name1';
-        $email = 'email@example';
+        $id = $this->put('id');
+        $name = $this->put('name');
+        $email = $this->put('email');
+        $password = $this->put('password');
+        $img = $this->put('img');
 
         $user = array(
             'name' => $name,
-            'email' => $email
+            'email' => $email,
+            'password' => $password,
+            'img' => $img
         );
 
         $this->db->where('id', $id);
-        $this->db->update('table_name', $user);
+        $this->db->update('users', $user);
 
         $this->response($user, REST_Controller::HTTP_OK);
     }
+  
 }

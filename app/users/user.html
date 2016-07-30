@@ -1,18 +1,82 @@
-<h1>User</h1>
-
-<div class="panel panel-default" ng-if="$ctrl.user">
+<div class="panel panel-default">
     <div class="panel-body">
-        <div class="media">
-            <div class="media-left">
-                <a href="#">
-                    <img class="media-object" ng-src="{{$ctrl.user.img}}" alt="...">
-                </a>
-            </div>
-            <div class="media-body">
-                <h4 class="media-heading" ng-bind="$ctrl.user.name"></h4>
-                <p ng-bind="$ctrl.user.email | limitTo: 100"></p>
+        <div nv-file-drop="" uploader="$ctrl.uploader">
+            <div class="row">
+                <div class="col-md-5" style="margin-left:5px;margin-right: 5px;">
+
+                    <div class="row" ng-if="$ctrl.uploader.queue.length===0">
+                        <div ng-show="$ctrl.uploader.isHTML5">
+                            <div class="well my-drop-zone" nv-file-over="" uploader="$ctrl.uploader">
+                                <input type="file" nv-file-select="" uploader="$ctrl.uploader" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="$ctrl.uploader.queue.length>0">
+                        <div ng-repeat="item in $ctrl.uploader.queue">
+                            <div ng-show="$ctrl.uploader.isHTML5">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <div ng-thumb="{ file: item._file, height: 100 }"></div>
+                                </div>
+                                <p>Name: {{ item.file.name }}</p>
+                                <p>Size: {{ item.file.size/1024/1024|number:2 }} MB</p>
+                                <div class="progress" style="margin-bottom: 10px;">
+                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                </div>
+                            </div>
+                            <p>
+                            <span class="text-center">
+                                <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                             </span>
+                                <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                    <span class="glyphicon glyphicon-upload"></span> Upload
+                                </button>
+                                <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                </button>
+                                <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                    <span class="glyphicon glyphicon-trash"></span> Remove
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <form>
+                        <div class="form-group">
+                            <label for="userName">Name</label>
+                            <input type="text" ng-model="$ctrl.user.name" id="userName" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="userEmail">Email address</label>
+                            <input type="email" ng-model="$ctrl.user.email" id="userEmail" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="userPassword">Password</label>
+                            <input type="password" ng-model="$ctrl.user.password"  class="form-control" id="userPassword" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="userImage">Image</label>
+                            <input type="text" ng-model="$ctrl.user.img" class="form-control" id="userImage" placeholder="Image">
+                            <p class="help-block" ng-if="$ctrl.user.img"><img class="img-responsive img-thumbnail" ng-src="public/uploads/{{$ctrl.user.img}}" alt="..." style="max-width: 200px"></p>
+                        </div>
+                        <button type="button" class="btn btn-success" ng-click="$ctrl.onCreateUserClicked($ctrl.user)">
+                            <span class="glyphicon glyphicon-save"></span> Add
+                        </button>
+
+                        <button type="button" class="btn btn-info" ng-click="$ctrl.onUpdateUserClicked($ctrl.user)">
+                            <span class="glyphicon glyphicon-floppy-save"></span> Update
+                        </button>
+
+                    </form>
+
+
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 

@@ -1,5 +1,22 @@
 <h1>Users</h1>
 
+
+<div class="row" style="margin-bottom: 10px;">
+    <button ng-show="!$ctrl.isShowUserForm" class="btn btn-success btn-xs" ng-click="$ctrl.onUserAddClicked()">
+        <span class="glyphicon glyphicon-plus-sign"></span>
+    </button>
+
+    <button ng-show="$ctrl.isShowUserForm" class="btn btn-info btn-xs" ng-click="$ctrl.onUserHideClicked()">
+        <span class="glyphicon glyphicon-zoom-out"></span>
+    </button>
+    <div style="margin-top: 10px;">
+        <ifs-user ng-if="$ctrl.isShowUserForm"></ifs-user>
+    </div>
+</div>
+
+
+
+
 <div class="panel panel-default">
     <div class="panel-body">
 
@@ -17,8 +34,17 @@
                     <span ng-bind="item.email | limitTo: 100"></span>
                 </td>
                 <td>
-                    <span><button class="btn btn-link" ng-click="$ctrl.onUserInfoClicked(item)">More Info</button></span>
-                    <span><button class="btn btn-link" ng-click="$ctrl.onUserDetailClicked(item.id)">Details</button></span>
+
+                    <button type="button" class="btn btn-success btn-xs" ng-click="$ctrl.onUserInfoClicked(item)">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                    </button>
+                    <button type="button" class="btn btn-success btn-xs" ng-click="$ctrl.onUserDetailClicked(item.id)">
+                        <span class="glyphicon glyphicon-zoom-in"></span>
+                    </button>
+
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="$ctrl.onUserDeleteClicked(item.id)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
                 </td>
             </tr>
         </table>
@@ -31,7 +57,7 @@
         <div class="media">
             <div class="media-left">
                 <a href="#">
-                    <img class="media-object" ng-src="{{$ctrl.user.img}}" alt="...">
+                    <img class="media-object" ng-src="public/uploads/{{$ctrl.user.img}}" alt="..." style="max-width: 200px">
                 </a>
             </div>
             <div class="media-body">

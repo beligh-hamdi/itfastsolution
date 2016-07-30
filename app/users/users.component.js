@@ -16,6 +16,23 @@
             $location.path('users/'+id);
         };
 
+        $ctrl.onUserAddClicked = function(){
+            $ctrl.isShowUserForm = true;
+        };
+
+        $ctrl.onUserHideClicked = function(){
+            $ctrl.isShowUserForm = false;
+        };
+
+        $ctrl.onUserDeleteClicked = function(id){
+            UserService.delete(id).then(function (data) {
+                var id = angular.copy(data);
+                $ctrl.users = $ctrl.users.filter(function(a){ return a.id !== id });
+            },function (error) {
+
+            });
+        };
+
         function activate(){
             UserService.getAll().then(function (data) {
                 $ctrl.users = angular.copy(data);

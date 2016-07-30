@@ -2,6 +2,7 @@
 
     angular.module('ifs', [
         'ngRoute',
+        'angularFileUpload',
         'ifs.navbar', 'ifs.pages', 'ifs.users'
     ]);
     

@@ -1,3 +1,17 @@
 body {
-    margin-top: 50px;
+    margin-top: 60px;
+}
+
+.my-drop-zone { border: dotted 3px lightgray; height: 200px; }
+.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+
+
+canvas {
+    background-color: #f3f3f3;
+    -webkit-box-shadow: 3px 3px 3px 0 #e3e3e3;
+    -moz-box-shadow: 3px 3px 3px 0 #e3e3e3;
+    box-shadow: 3px 3px 3px 0 #e3e3e3;
+    border: 1px solid #c3c3c3;
+    height: 200px;
+    margin: 6px 0 0 6px;
 }
