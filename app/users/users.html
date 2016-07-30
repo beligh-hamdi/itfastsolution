@@ -1,0 +1,44 @@
+<h1>Users</h1>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <table class="table table-hover table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+            <tr ng-repeat="item in $ctrl.users">
+                <td>
+                    <span ng-bind="item.name"></span>
+                </td>
+                <td>
+                    <span ng-bind="item.email | limitTo: 100"></span>
+                </td>
+                <td>
+                    <span><button class="btn btn-link" ng-click="$ctrl.onUserInfoClicked(item)">More Info</button></span>
+                    <span><button class="btn btn-link" ng-click="$ctrl.onUserDetailClicked(item.id)">Details</button></span>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+<div class="panel panel-default" ng-if="$ctrl.user">
+    <div class="panel-body">
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object" ng-src="{{$ctrl.user.img}}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading" ng-bind="$ctrl.user.name"></h4>
+                <p ng-bind="$ctrl.user.email | limitTo: 100"></p>
+                <span><button class="btn btn-link" ng-click="$ctrl.onUserDetailClicked($ctrl.user.id)">Details</button></span>
+            </div>
+        </div>
+    </div>
+</div>

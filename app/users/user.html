@@ -1,0 +1,18 @@
+<h1>User</h1>
+
+<div class="panel panel-default" ng-if="$ctrl.user">
+    <div class="panel-body">
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object" ng-src="{{$ctrl.user.img}}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading" ng-bind="$ctrl.user.name"></h4>
+                <p ng-bind="$ctrl.user.email | limitTo: 100"></p>
+            </div>
+        </div>
+    </div>
+</div>
+

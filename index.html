@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Title</title>
+        <link rel="stylesheet" href="public/lib/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="public/css/style.css">
+    </head>
+    <body>
+        <ifs-navbar active="active"></ifs-navbar>
+        <div class="container">
+            <div ng-view></div>
+        </div>
+
+        <script src="public/lib/angular/angular.js"></script>
+        <script src="public/lib/angular-route/angular-route.js"></script>
+
+        <script src="public/lib/jquery/dist/jquery.min.js"></script>
+        <script src="public/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <script src="app/app.js"></script>
+        <script src="app/app.config.js"></script>
+
+        <script src="app/shared/services/user.service.js"></script>
+
+        <script src="app/shared/navbar/navbar.module.js"></script>
+        <script src="app/shared/navbar/navbar.component.js"></script>
+
+        <script src="app/pages/pages.module.js"></script>
+        <script src="app/pages/home.component.js"></script>
+        <script src="app/pages/contact.component.js"></script>
+        <script src="app/pages/about.component.js"></script>
+
+        <script src="app/users/users.module.js"></script>
+        <script src="app/users/users.component.js"></script>
+        <script src="app/users/user.component.js"></script>
+
+    </body>
+</html>

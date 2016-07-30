@@ -8,3 +8,4 @@
 server/vendor
 server/composer.phar
 server/composer.lock
+public/lib
