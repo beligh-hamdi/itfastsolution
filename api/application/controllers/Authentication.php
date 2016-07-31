@@ -36,6 +36,20 @@ class Authentication extends CI_Controller
             ->set_output(json_encode($this->responseBody));
     }
 
+
+    public function isLogged()
+    {
+        $session_data = $this->session->userdata('logged_in');
+        
+        $this->responseStatusHeader = 200;
+        $this->responseBody = $session_data;
+
+        return $this->output
+            ->set_content_type($this->responseBodyContent_type)
+            ->set_status_header($this->responseStatusHeader)
+            ->set_output(json_encode($this->responseBody));
+    }
+
     public function logout()
     {
         $this->session->unset_userdata('logged_in');

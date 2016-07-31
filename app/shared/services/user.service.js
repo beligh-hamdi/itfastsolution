@@ -62,6 +62,27 @@
             return deferred.promise;
         };
 
+        this.logout = function(){
+            var deferred = $q.defer();
+            $http.get(RESOURCE_API_PATH+'/logout').then(function(response) {
+                deferred.resolve(response.data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        };
+
+        this.getSession = function(){
+            var deferred = $q.defer();
+            $http.get(RESOURCE_API_PATH+'/login').then(function(response) {
+                deferred.resolve(response.data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        };
+        
+
     }
 
     UserService.$inject = ['$http', '$q', 'RESOURCE_API_PATH'];
