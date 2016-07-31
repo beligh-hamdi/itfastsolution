@@ -1,22 +1,23 @@
-<h1>Users</h1>
-
-<div class="row" style="margin-bottom: 10px;">
-    <button ng-show="!$ctrl.isShowUserForm" class="btn btn-success btn-xs" ng-click="$ctrl.onUserAddClicked()">
-        <span class="glyphicon glyphicon-plus-sign"></span>
-    </button>
-
-    <button ng-show="$ctrl.isShowUserForm" class="btn btn-info btn-xs" ng-click="$ctrl.onUserHideClicked()">
-        <span class="glyphicon glyphicon-zoom-out"></span>
-    </button>
-    <div style="margin-top: 10px;">
-        <ifs-user ng-if="$ctrl.isShowUserForm"></ifs-user>
-    </div>
-</div>
-
 <div class="panel panel-default">
+    <div class="panel-heading">Users</div>
     <div class="panel-body">
 
-        <table class="table table-hover table-striped">
+
+        <div class="row" style="margin: 5px 5px 5px 5px;">
+            <button ng-show="!$ctrl.isShowUserForm" class="btn btn-raised btn-success btn-fab" ng-click="$ctrl.onUserAddClicked()">
+                <i class="material-icons">add</i>
+            </button>
+
+            <button ng-show="$ctrl.isShowUserForm" class="btn btn-raised btn-info btn-fab" ng-click="$ctrl.onUserHideClicked()">
+                <i class="material-icons">delete</i>
+            </button>
+            <div style="margin-top: 10px;">
+                <ifs-user ng-if="$ctrl.isShowUserForm"></ifs-user>
+            </div>
+        </div>
+
+
+        <table class="table table-bordered table-striped">
             <tr>
                 <th>Name</th>
                 <th>Email</th>
@@ -30,7 +31,6 @@
                     <span ng-bind="item.email | limitTo: 100"></span>
                 </td>
                 <td>
-
                     <button type="button" class="btn btn-success btn-xs" ng-click="$ctrl.onUserInfoClicked(item)">
                         <span class="glyphicon glyphicon-info-sign"></span>
                     </button>

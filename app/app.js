@@ -3,7 +3,7 @@
     angular.module('ifs', [
         'ngRoute',
         'angularFileUpload', 'LocalStorageModule',
-        'ifs.navbar', 'ifs.pages', 'ifs.users'
+        'ifs.navbar', 'ifs.pages', 'ifs.users', 'ifs.products'
     ]);
     
     // bootstrap app

@@ -47,6 +47,10 @@
                     logout : routeResolvers.logout
                 }
             })
+
+            .when('/products',{
+                template:'<ifs-products></ifs-products>'
+            })
             
             .when('/users',{
                 template:'<ifs-users></ifs-users>'
@@ -86,7 +90,7 @@
                     }
                 }
             },function (error) {
-                
+
             });
 
         });

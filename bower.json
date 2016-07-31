@@ -12,6 +12,8 @@
     "bootstrap": "^3.3.7",
     "angular-route": "^1.5.8",
     "angular-file-upload": "^2.3.4",
-    "angular-local-storage": "^0.3.0"
+    "angular-local-storage": "^0.3.0",
+    "font-awesome": "fontawesome#^4.6.3",
+    "bootstrap-material-design": "^0.5.10"
   }
 }

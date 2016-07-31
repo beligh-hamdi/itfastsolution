@@ -4,7 +4,17 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Title</title>
+
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+
         <link rel="stylesheet" href="public/lib/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="public/lib/font-awesome/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="public/lib/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
+        <link rel="stylesheet" href="public/lib/bootstrap-material-design/dist/css/ripples.min.css">
+
+
         <link rel="stylesheet" href="public/css/style.css">
     </head>
     <body>
@@ -16,6 +26,9 @@
         <script src="public/lib/jquery/dist/jquery.min.js"></script>
         <script src="public/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 
+        <script src="public/lib/bootstrap-material-design/dist/js/ripples.min.js"></script>
+        <script src="public/lib/bootstrap-material-design/dist/js/material.min.js"></script>
+
         <script src="public/lib/angular/angular.js"></script>
         <script src="public/lib/angular-route/angular-route.js"></script>
         <script src="public/lib/angular-file-upload/dist/angular-file-upload.min.js"></script>
@@ -25,6 +38,7 @@
         <script src="app/app.config.js"></script>
 
         <script src="app/shared/services/user.service.js"></script>
+        <script src="app/shared/services/product.service.js"></script>
         <script src="app/shared/components/ngThumb.directive.js"></script>
 
         <script src="app/shared/navbar/navbar.module.js"></script>
@@ -40,6 +54,14 @@
         <script src="app/users/user.component.js"></script>
 
         <script src="app/users/login.component.js"></script>
+
+        <script src="app/products/products.module.js"></script>
+        <script src="app/products/products.component.js"></script>
+
+
+        <script>
+            $.material.init();
+        </script>
 
 
     </body>

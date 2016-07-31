@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Products</div>
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Photos</th>
+                <th>Description</th>
+            </tr>
+            <tr ng-repeat="item in $ctrl.list">
+                <td>
+                    <img class="img-responsive img-thumbnail" ng-src="public/uploads/{{item.photo}}" alt="..." style="max-width: 100px">
+                </td>
+                <td>
+                    <h4 ng-bind="item.title"></h4>
+                    <span ng-bind="item.description | limitTo: 100"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
