@@ -12,7 +12,6 @@
         $ctrl.onLoginClicked = function(user){
             UserService.login(user).then(function (data) {
                // $ctrl.userId = angular.copy(data);
-                console.log(data);
                 
             },function (error) {
                 console.log(error);

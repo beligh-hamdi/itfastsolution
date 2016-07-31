@@ -2,7 +2,7 @@
 
     angular.module('ifs', [
         'ngRoute',
-        'angularFileUpload',
+        'angularFileUpload', 'LocalStorageModule',
         'ifs.navbar', 'ifs.pages', 'ifs.users'
     ]);
     

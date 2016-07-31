@@ -1,6 +1,6 @@
 (function(){
 
-    function Config($routeProvider){
+    function Config($routeProvider, localStorageServiceProvider){
         
         var routeResolvers = {
             allUsers: function(UserService) {
@@ -14,6 +14,8 @@
                 });
             }
         };
+
+        localStorageServiceProvider.setPrefix('ifs');
 
         $routeProvider
 
@@ -57,36 +59,40 @@
             .otherwise({redirectTo:'/'});
     }
 
-    Config.$inject = ['$routeProvider'];
+    Config.$inject = ['$routeProvider', 'localStorageServiceProvider'];
 
-    function Run($rootScope, $location, UserService){
-       
+    function Run($rootScope, $location, UserService, localStorageService){
+
+
+       // localStorageService.set(key, val);
+      // localStorageService.get(key);
+      //  localStorageService.clearAll();
+
+
         $rootScope.$on("$locationChangeStart", function(event, next, current) {
             $rootScope.active= $location.$$url;
 
             $rootScope.authenticated = false;
             UserService.getSession().then(function (data) {
                 var nextUrl = $location.$$url;
-                if (data.id) {
+                if (data) {
                     $rootScope.authenticated = true;
-                    if (nextUrl == '/signup' || nextUrl == '/login') {
-                        $location.path('/home');
-                    }
+
                 } else {
                     if (nextUrl == '/signup' || nextUrl == '/login') {
 
                     } else {
-                        $location.path('/login');
+                        // $location.path('/login');
                     }
                 }
             },function (error) {
-                $rootScope.authenticated = false;
+                
             });
 
         });
     }
 
-    Run.$inject = ['$rootScope', '$location', 'UserService'];
+    Run.$inject = ['$rootScope', '$location', 'UserService', 'localStorageService'];
 
     angular.module('ifs')
         .constant('RESOURCE_API_PATH', 'api');
