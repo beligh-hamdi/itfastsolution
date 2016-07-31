@@ -5,7 +5,7 @@ require APPPATH . '/libraries/REST_Controller.php';
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class Users extends REST_Controller
+class Authentication extends REST_Controller
 {
     function __construct()
     {
@@ -17,11 +17,9 @@ class Users extends REST_Controller
         $this->methods['user_post']['limit'] = 100; // 100 requests per hour per user/key
         $this->methods['user_delete']['limit'] = 50; // 50 requests per hour per user/key
     }
-
-
+    
     public function index_get()
     {
-
         $id = $this->get('id');
 
         if ($id === NULL)
@@ -66,34 +64,6 @@ class Users extends REST_Controller
 
     }
 
-    public function index_delete()
-    {
-        $id = $this->query('id');
-        $this->db->where('id', $id);
-        $this->db->delete('users');
-
-        $this->response($id, REST_Controller::HTTP_OK);
-    }
-
-    public function index_put()
-    {
-        $id = $this->put('id');
-        $name = $this->put('name');
-        $email = $this->put('email');
-        $password = $this->put('password');
-        $img = $this->put('img');
-
-        $user = array(
-            'name' => $name,
-            'email' => $email,
-            'password' => $password,
-            'img' => $img
-        );
-
-        $this->db->where('id', $id);
-        $this->db->update('users', $user);
-
-        $this->response($user, REST_Controller::HTTP_OK);
-    }
+  
   
 }

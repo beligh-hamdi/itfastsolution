@@ -54,9 +54,8 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-/*
-| -------------------------------------------------------------------------
-| REST API Routes
-| -------------------------------------------------------------------------
-*/
-
+$route['users']['GET'] = 'users/getAll';
+$route['users/(:num)']['GET'] = 'users/get/$1';
+$route['users']['POST'] = 'users/post';
+$route['users']['PUT'] = 'users/put';
+$route['users/(:num)']['DELETE'] = 'users/delete/$1';

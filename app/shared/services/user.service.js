@@ -14,7 +14,7 @@
 
         this.get = function(id){
             var deferred = $q.defer();
-            $http.get(RESOURCE_API_PATH+'/users?id='+ id).then(function(response) {
+            $http.get(RESOURCE_API_PATH+'/users/'+ id).then(function(response) {
                 deferred.resolve(response.data);
             }, function(error) {
                 deferred.reject(error);
@@ -44,7 +44,7 @@
 
         this.delete = function(id){
             var deferred = $q.defer();
-            $http.delete(RESOURCE_API_PATH+'/users?id='+id).then(function(response) {
+            $http.delete(RESOURCE_API_PATH+'/users/'+id).then(function(response) {
                 deferred.resolve(response.data);
             }, function(error) {
                 deferred.reject(error);

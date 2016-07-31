@@ -5,7 +5,7 @@
 !*/cache/index.html
 !*/cache/.htaccess
 .idea/
-server/vendor
-server/composer.phar
-server/composer.lock
+api/vendor
+api/composer.phar
+api/composer.lock
 public/lib

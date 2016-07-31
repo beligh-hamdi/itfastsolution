@@ -49,7 +49,7 @@
     }
 
     angular.module('ifs')
-        .constant('RESOURCE_API_PATH', 'server/api');
+        .constant('RESOURCE_API_PATH', 'api');
 
     angular.module('ifs')
         .config(config)
