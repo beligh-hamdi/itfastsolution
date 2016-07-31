@@ -2,28 +2,42 @@
 
 class Users extends CI_Controller
 {
-    function __construct()
-    {
-        parent::__construct();
-    }
-
     private $responseStatusHeader;
     private $responseBody;
     private $responseBodyContent_type = 'application/json';
+
+    function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('user','',true);
+
+        if(!$this->user->is_authenticated()) exit('your are not authenticated access denied');
+    }
     
     public function getAll()
     {
 
-        $users = $this->db->get('users')->result();
-        if ($users)
+        if($this->user->is_admin())
         {
-            $this->responseStatusHeader = 200;
-            $this->responseBody = $users;
+            $users = $this->db->get('users')->result();
+            if ($users)
+            {
+                $this->responseStatusHeader = 200;
+                $this->responseBody = $users;
+            }
+            else
+            {
+                $this->responseStatusHeader = 404;
+                $this->responseBody = 'Error';
+            }
+
         }
         else
         {
-            $this->responseStatusHeader = 404;
-            $this->responseBody = 'Error';
+            $this->responseStatusHeader = 503;
+            $this->responseBody = 'Error Login';
+
         }
 
         return $this->output
@@ -45,7 +59,7 @@ class Users extends CI_Controller
             ->set_status_header($this->responseStatusHeader)
             ->set_output(json_encode($this->responseBody));
     }
-    
+
     public function post()
     {
         $requestBody = json_decode(file_get_contents('php://input'), true);

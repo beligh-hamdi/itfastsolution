@@ -59,3 +59,6 @@ $route['users/(:num)']['GET'] = 'users/get/$1';
 $route['users']['POST'] = 'users/post';
 $route['users']['PUT'] = 'users/put';
 $route['users/(:num)']['DELETE'] = 'users/delete/$1';
+
+$route['login']['POST'] = 'authentication/login';
+$route['logout']['GET'] = 'authentication/logout';

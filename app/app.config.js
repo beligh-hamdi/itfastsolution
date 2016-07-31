@@ -30,6 +30,11 @@
                     list: routeResolvers.allUsers
                 }
             })
+
+
+            .when('/login',{
+                template:'<ifs-login></ifs-login>'
+            })
             
             .when('/users',{
                 template:'<ifs-users></ifs-users>'

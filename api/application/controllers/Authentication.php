@@ -1,69 +1,53 @@
-<?php
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-require APPPATH . '/libraries/REST_Controller.php';
-
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-
-class Authentication extends REST_Controller
+class Authentication extends CI_Controller
 {
+    private $responseStatusHeader;
+    private $responseBody;
+    private $responseBodyContent_type = 'application/json';
+    
     function __construct()
     {
-        // Construct the parent class
         parent::__construct();
-        // Configure limits on our controller methods
-        // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php
-        $this->methods['user_get']['limit'] = 500; // 500 requests per hour per user/key
-        $this->methods['user_post']['limit'] = 100; // 100 requests per hour per user/key
-        $this->methods['user_delete']['limit'] = 50; // 50 requests per hour per user/key
+
+        $this->load->model('user','',true);
     }
     
-    public function index_get()
+    public function login()
     {
-        $id = $this->get('id');
+        $requestBody = json_decode(file_get_contents('php://input'), true);
 
-        if ($id === NULL)
-        {
-            $users = $this->db->get('users')->result();
-            if ($users)
-            {
-                $this->response($users, REST_Controller::HTTP_OK);
-            }
-            else
-            {
-                $this->response('', REST_Controller::HTTP_NOT_FOUND);
-            }
-        }
-        else
-        {
-            $this->db->where('id', (int) $id);
-            $user = $this->db->get('users')->row();
-            $this->response($user, REST_Controller::HTTP_OK);
+        $username = $requestBody['username'];
+        $password = $requestBody['password'];
 
+
+        if($this->user->login($username, $password)){
+            $session_data = $this->session->userdata('logged_in');
+            $this->responseStatusHeader = 200;
+            $this->responseBody = $session_data;
+        }else{
+            $this->responseStatusHeader = 500;
+            $this->responseBody = 'error login';
         }
+
+        return $this->output
+            ->set_content_type($this->responseBodyContent_type)
+            ->set_status_header($this->responseStatusHeader)
+            ->set_output(json_encode($this->responseBody));
     }
 
-    public function index_post()
+    public function logout()
     {
+        $this->session->unset_userdata('logged_in');
+        session_destroy();
 
-        $name = $this->post('name');
-        $email = $this->post('email');
-        $password = $this->post('password');
-        $img = $this->post('img');
+        $this->responseStatusHeader = 200;
+        $this->responseBody = '';
 
-        $user = array(
-            'name' => $name,
-            'email' => $email,
-            'password' => $password,
-            'img' => $img
-        );
-
-        $this->db->insert('users', $user);
-        $id = $this->db->insert_id();
-        $this->response($id, REST_Controller::HTTP_OK);
-
+        return $this->output
+            ->set_content_type($this->responseBodyContent_type)
+            ->set_status_header($this->responseStatusHeader)
+            ->set_output(json_encode($this->responseBody));
     }
-
-  
-  
+    
 }

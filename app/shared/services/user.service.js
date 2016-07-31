@@ -51,6 +51,16 @@
             });
             return deferred.promise;
         };
+        
+        this.login = function(user){
+            var deferred = $q.defer();
+            $http.post(RESOURCE_API_PATH+'/login', user).then(function(response) {
+                deferred.resolve(response.data);
+            }, function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        };
 
     }
 
